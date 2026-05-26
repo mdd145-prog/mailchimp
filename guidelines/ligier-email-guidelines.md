@@ -142,11 +142,21 @@ El email siempre tiene estas 9 secciones en este orden. No se omite ninguna, no 
 - Background exterior: `#1a1a1a`
 - Padding exterior: `0 40px 32–40px`
 - Caja interior: background `#ffffff`, padding `16–20px 20–24px`
-- Estructura interior:
-  1. Label "PROMO PERMANENTE": 9–10px, 2px letter-spacing, UPPERCASE, `#888`
+- Layout: **2 columnas** — texto a la izquierda, botón a la derecha (alineado al centro vertical)
+
+**Columna izquierda:**
+  1. Label: 9–10px, 2px letter-spacing, UPPERCASE, `#888` — texto: `"PROMOCIÓN ACTIVA"`
   2. Título "Llevá 6, pagá 5": 16–18px, 700, `#111`
-  3. Ejemplo de precio: 13px, `#888` — mostrar un producto de ejemplo con precio total
-- **No tiene botón propio** en esta sección (el botón de compra está en Productos y en el Pack)
+  3. Descripción: 13px, `#888` — texto fijo: `"Válido en toda la selección de vinos. Podés mezclar etiquetas."`
+
+**Columna derecha:**
+  - Botón tipo 2: texto `"APROVECHAR"`, fondo `#111`, color `#fff`
+  - El botón linkea al **mismo link de carrito compartido** de los 6 productos del email
+
+**Reglas:**
+- **No poner ejemplos de precio** con productos específicos
+- **No poner el botón debajo** — siempre a la derecha en la misma línea
+- En mobile: el botón se apila debajo del texto
 
 #### Sección 4 — PRODUCTOS
 - Background: `#ffffff`
