@@ -414,6 +414,24 @@ Línea 2: la promo, si aplica — mencionada sin exclamación
 
 ## PARTE 3 — TIPOS DE EMAIL
 
+### REGLA CRÍTICA — Categorías y promoción 6x5
+
+**La promo 6x5 NO existe en todas las categorías.** Aplicar incorrectamente esta promo es un error grave.
+
+| Tipo de email | URL a navegar | Promo 6x5 |
+|---------------|--------------|-----------|
+| Vinos | https://vinotecaligier.com/vino | ✅ SÍ aplica |
+| Whisky | https://vinotecaligier.com/whisky | ✅ SÍ aplica |
+| Espirituosas | https://vinotecaligier.com/espirituosas | ✅ SÍ aplica |
+| Vinos Guardados | https://vinotecaligier.com/vinos-guardados | ❌ NO aplica |
+| Wine Club | https://vinotecaligier.com/contenido-wineclub | ❌ NO aplica |
+| Experiencias | https://vinotecaligier.com/contenido-experiencias | ❌ NO aplica |
+| Gift Cards | https://vinotecaligier.com/gift-card-ligier.html | ❌ NO aplica |
+
+**Regla de navegación:** Para seleccionar productos, navegar ÚNICAMENTE la URL correspondiente al tipo de email. Nunca mezclar productos de categorías distintas en un mismo email.
+
+---
+
 ### 3.1 Emails de vinos
 
 **Rangos de precio:**
