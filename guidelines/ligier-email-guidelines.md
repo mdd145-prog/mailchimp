@@ -166,12 +166,17 @@ Estructura de cada producto:
 2. Label: `[Cepa] · [Región] · [Provincia]` — 9px · 2px spacing · UPPERCASE · `#aaa`
 3. Nombre: 14px · 700 · `#111`
 4. Descripción: 13px · `#888` · line-height 1.5 · máx 2 líneas
-5. Precio: 16px · 700 · `#111` — tal como figura en el sitio, SIN cálculos
+5. Precio — layout aprobado (opción A):
+   - Línea 1: precio original tachado — 12px · `#aaa` · `text-decoration:line-through`
+   - Línea 2: precio promo 6x5 — 22px · 700 · `#111` · `line-height:1` — protagonista visual
+   - Línea 3: label — 9px · 700 · 1px spacing · UPPERCASE · `#888` — texto fijo: `"c/u comprando 6"`
+   - Cálculo precio promo: `redondear(precio × 5 / 6)` con punto como separador de miles
+   - Solo aplica en emails con promo 6x5 (vinos, whisky, espirituosas)
 6. Botón 2 pequeño: "COMPRAR"
 
-❌ Nunca mostrar precio 6x5 calculado
-❌ Nunca mostrar total de 6 botellas calculado
+❌ Nunca mostrar total de 6 botellas calculado — ese valor se lee del carrito
 ❌ Nunca incluir productos sin stock o sin imagen
+❌ Nunca mostrar precio 6x5 en Vinos Guardados, Wine Club, Experiencias o Gift Cards
 
 ### 4b. BOTÓN PACK
 ```
@@ -266,12 +271,20 @@ mobile: columna única — border-bottom: 1px solid #f0f0f0
 Columna izquierda:
 1. Ícono WhatsApp oficial (SVG verde `#25D366`, 28px) + "WhatsApp" + link `https://wa.me/5491170546060`
 2. Ícono teléfono (círculo `#1a1a1a`, 28px) + "Teléfono" + link `tel:+541120401252`
-3. Dos íconos Instagram **monocromáticos** (negro `#111`, 28px) en fila:
-   - @ligier → `https://www.instagram.com/ligier`
-   - @vinosguardados → `https://www.instagram.com/vinosguardados`
+3. Dos íconos Instagram **monocromáticos negros**, cada uno en su propia fila con label y handle:
+   - Ícono: `https://img.icons8.com/ios-filled/48/111111/instagram-new--v1.png` — 28×28px
+   - Fila 1: label "INSTAGRAM" + `@ligier` → `https://www.instagram.com/ligier`
+   - Fila 2: label "VINOS GUARDADOS" + `@vinosguardados` → `https://www.instagram.com/vinosguardados`
+   - Separación entre filas: `margin-bottom: 14px`
 
-❌ Nunca usar íconos de Instagram con gradiente de colores
-❌ Nunca usar letras en lugar de íconos reales
+**URLs de íconos aprobadas (mcusercontent — no cambiar):**
+- WhatsApp: `https://mcusercontent.com/14b7b2be6d99dcac6ed81f35c/images/5660aedf-265a-c31e-44e8-721cc53da96f.png`
+- Teléfono: `https://mcusercontent.com/14b7b2be6d99dcac6ed81f35c/images/f346b0f0-d6be-eac4-b520-541808d693dc.png`
+- Instagram: `https://mcusercontent.com/14b7b2be6d99dcac6ed81f35c/images/4f18a0b0-eb4d-9ed9-9c1a-bcaf9dd32a1c.png`
+
+❌ Nunca usar SVG inline — Mailchimp los elimina
+❌ Nunca usar servicios externos (icons8, mailchimp CDN social-block) — se bloquean
+✅ Siempre usar las URLs de mcusercontent de arriba
 
 Columna derecha:
 - Email: `ventas@ligier.com.ar`
@@ -317,12 +330,15 @@ Usar `@media only screen and (max-width: 480px)` con estas reglas mínimas:
 .hero-cell { padding: 32px 24px 28px !important; }
 .hero-title { font-size: 26px !important; }
 .products-cell { padding: 20px 16px !important; }
-/* columnas de producto: imagen arriba centrada, info abajo */
-.img-col { display: block !important; width: 100% !important; text-align: center !important; padding-bottom: 12px !important; }
-.info-col { display: block !important; width: 100% !important; padding-left: 0 !important; }
-/* columnas de contacto: apiladas */
-.contact-left { display: block !important; width: 100% !important; border-right: none !important; padding-bottom: 16px !important; border-bottom: 1px solid #f0f0f0 !important; }
-.contact-right { display: block !important; width: 100% !important; padding-left: 0 !important; }
+/* Productos en mobile: imagen MÁS CHICA pero SIGUE al costado — NUNCA apilar */
+.prod-img-col { width: 90px !important; padding-right: 12px !important; }
+.prod-img-col img { width: 80px !important; }
+/* Accesorio en mobile: igual, imagen al costado */
+.acc-img-col { width: 100px !important; padding-right: 12px !important; }
+.acc-img-col img { width: 90px !important; }
+/* Columnas de contacto: apiladas en mobile */
+.cnt-left { display: block !important; width: 100% !important; border-right: none !important; border-bottom: 1px solid #f0f0f0 !important; padding-right: 0 !important; padding-bottom: 20px !important; margin-bottom: 20px !important; }
+.cnt-right { display: block !important; width: 100% !important; padding-left: 0 !important; }
 .footer-cell { padding: 20px 24px !important; }
 ```
 
