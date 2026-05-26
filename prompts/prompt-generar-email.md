@@ -4,12 +4,22 @@
 
 ---
 
+## ⚠️ ANTES DE USAR ESTE PROMPT
+
+1. `git pull origin main` para tener el repo actualizado
+2. Claude Code SIEMPRE parte del template `templates/base-email-vinos.html`
+3. Nunca genera HTML desde cero — copia la estructura y reemplaza el contenido
+
+---
+
 ## PROMPT BASE
 
 ```
 Leé los archivos guidelines/ligier-email-guidelines.md y prompts/instrucciones-claude.md completos antes de hacer cualquier cosa. Confirmame que los leíste y resumí las reglas críticas.
 
-Luego generá un email con estos datos:
+Luego leé también el template de referencia: templates/base-email-vinos.html — esta es la base que tenés que usar. Copiá toda la estructura HTML y CSS, y reemplazá solo el contenido variable (productos, precios, hero copy, links).
+
+Generá un email con estos datos:
 
 TIPO: [vinos / whisky / espirituosas / wine-club / experiencias / vinos-guardados / gift-cards]
 CRITERIO: [por cepa / por zona / por rango de precio / por provincia / por país]
@@ -35,7 +45,9 @@ Guardá el resultado en templates/[nombre-descriptivo].html
 ```
 Leé los archivos guidelines/ligier-email-guidelines.md y prompts/instrucciones-claude.md completos antes de hacer cualquier cosa. Confirmame que los leíste y resumí las reglas críticas.
 
-Luego generá un email con estos datos:
+Luego leé también el template de referencia: templates/base-email-vinos.html — esta es la base que tenés que usar. Copiá toda la estructura HTML y CSS, y reemplazá solo el contenido variable (productos, precios, hero copy, links).
+
+Generá un email con estos datos:
 
 TIPO: vinos
 CRITERIO: Malbecs de Mendoza
@@ -55,7 +67,9 @@ Guardá el resultado en templates/vinos-malbec-mayo2026.html
 ```
 Leé los archivos guidelines/ligier-email-guidelines.md y prompts/instrucciones-claude.md completos antes de hacer cualquier cosa. Confirmame que los leíste y resumí las reglas críticas.
 
-Luego generá un email con estos datos:
+Luego leé también el template de referencia: templates/base-email-vinos.html — esta es la base que tenés que usar. Copiá toda la estructura HTML y CSS, y reemplazá solo el contenido variable (productos, precios, hero copy, links).
+
+Generá un email con estos datos:
 
 TIPO: vinos
 CRITERIO: selección curada
@@ -76,7 +90,9 @@ Guardá el resultado en templates/vinos-seleccion-mayo2026.html
 ```
 Leé los archivos guidelines/ligier-email-guidelines.md y prompts/instrucciones-claude.md completos antes de hacer cualquier cosa. Confirmame que los leíste y resumí las reglas críticas.
 
-Luego generá un email con estos datos:
+Luego leé también el template de referencia: templates/base-email-vinos.html — esta es la base que tenés que usar. Copiá toda la estructura HTML y CSS, y reemplazá solo el contenido variable (productos, precios, hero copy, links).
+
+Generá un email con estos datos:
 
 TIPO: vinos
 CRITERIO: selección curada
