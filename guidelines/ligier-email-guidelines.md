@@ -170,9 +170,27 @@ El email siempre tiene estas 9 secciones en este orden. No se omite ninguna, no 
 2. Label de categoría: 9px, 2px letter-spacing, UPPERCASE, `#aaa` — formato: `[Cepa] · [Región] · [Provincia/País]`
 3. Nombre del producto: 14px, 700, `#111`
 4. Descripción: 13px, `#888`, line-height 1.5, máx 2 líneas
-5. Precio principal: 16px, 700, `#111` + precio unitario 6x5: 11px, 400, `#aaa` — en la misma línea
-6. Precio total 6 botellas: 11px, `#888` — en línea separada
-7. Botón "Comprar": Botón tipo 2 pequeño
+5. Precio individual: 16px, 700, `#111` — tal como figura en el sitio, sin cálculos
+6. Botón "Comprar": Botón tipo 2 pequeño
+
+**NUNCA mostrar precio unitario 6x5 calculado ni total de 6 botellas — el descuento lo aplica Magento en el carrito.**
+
+### REGLA CRÍTICA — Cálculo de la promoción 6×5
+
+**Claude NO debe calcular el precio 6x5 manualmente.** El descuento se aplica sobre la botella más barata del conjunto, no es una división simple de precio × 5/6.
+
+**Regla:** Mostrar únicamente el **precio individual de cada producto** tal como aparece en el sitio. No calcular ni mostrar precios unitarios 6x5 ni totales de pack. El valor real del carrito lo calcula Magento automáticamente cuando el cliente hace clic en el link.
+
+**En cada producto mostrar:**
+- Precio individual: tal como figura en el sitio ✅
+- ~~Precio unitario 6x5~~ ❌ No calcular
+- ~~Total 6 botellas~~ ❌ No calcular
+
+**En el botón pack:**
+- Texto: `"Llevá el pack completo · 6 botellas"`
+- ~~Precio total del pack~~ ❌ No mostrar — Magento lo calcula en el carrito
+
+---
 
 #### Sección 4b — BOTÓN PACK COMPLETO
 - Background: `#ffffff`
