@@ -191,8 +191,14 @@ alineación: centrado
 **Cómo obtener el valor real:**
 1. Generar el link de carrito con los 6 SKUs
 2. Navegar ese link en el sitio
-3. Leer el total que muestra Magento
-4. Usar ese número exacto — nunca calcularlo
+3. Leer el total que muestra Magento en el resumen del carrito
+4. **Navegar el link una segunda vez** para confirmar que el valor es el mismo
+5. Usar ese número exacto en el email
+
+❌ Nunca poner un valor estimado o calculado
+❌ Nunca dejar el campo vacío o con un placeholder como "$XXX.XXX"
+❌ Si el carrito no muestra el total, intentarlo 2 veces más antes de reportar el problema
+❌ El valor debe incluir el descuento 6x5 aplicado por Magento — si los 6 precios individuales suman más que el total del carrito, está bien, eso es la promo aplicada
 
 **Cómo generar el link de carrito:**
 ```
