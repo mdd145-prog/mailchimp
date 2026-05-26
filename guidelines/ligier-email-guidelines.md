@@ -186,9 +186,19 @@ El email siempre tiene estas 9 secciones en este orden. No se omite ninguna, no 
 - ~~Precio unitario 6x5~~ ❌ No calcular
 - ~~Total 6 botellas~~ ❌ No calcular
 
+**Cómo funciona la promo 6x5:**
+El descuento se aplica sobre la botella más económica del conjunto — no es una división lineal. Por eso Claude nunca calcula este valor manualmente.
+
+**Cómo obtener el total real del pack:**
+1. Generar el link de carrito con los 6 SKUs
+2. Navegar ese link en el sitio
+3. Leer el total que muestra Magento en el carrito
+4. Usar ese número exacto en el email
+
 **En el botón pack:**
 - Texto: `"Llevá el pack completo · 6 botellas"`
-- ~~Precio total del pack~~ ❌ No mostrar — Magento lo calcula en el carrito
+- Debajo del botón: `"Total 6x5: $[VALOR_REAL_DEL_CARRITO] · pagás 5, llevás 6"`
+- El valor debe ser el total real leído del carrito — nunca calculado
 
 ---
 
