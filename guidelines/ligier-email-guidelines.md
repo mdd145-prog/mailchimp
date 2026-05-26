@@ -404,3 +404,78 @@ Antes de guardar el HTML, verificar cada punto. Si alguno falla, corregirlo ante
 - [ ] *|UNSUB|* en footer
 - [ ] Reply-to: ventas@ligier.com.ar
 - [ ] Todos los links de productos correctos y funcionales
+
+
+---
+
+## ⛔ REGLA CRÍTICA — GENERACIÓN DE EMAILS
+
+**Claude Code NUNCA genera el HTML desde cero.** Siempre parte del template de referencia.
+
+### Flujo obligatorio:
+1. Leer `templates/vinos-malbec-26mayo.html` como base
+2. Copiar TODA la estructura HTML, CSS y media queries exactamente
+3. Reemplazar SOLO el contenido variable: productos, precios, links, SKUs, hero copy
+4. No modificar ningún estilo, clase CSS ni estructura de tablas
+5. No reescribir secciones que no cambian (contacto, footer, categorías)
+
+❌ Nunca reescribir el CSS desde cero
+❌ Nunca cambiar las clases mobile definidas en el template
+❌ Nunca "mejorar" o "simplificar" la estructura de tablas
+
+---
+
+## REGLAS MOBILE CRÍTICAS
+
+### Categorías — pills
+```css
+/* OBLIGATORIO — sin esto el texto se rompe letra por letra */
+a { white-space: nowrap !important; }
+.cat-pad a { 
+  display: inline-block;
+  white-space: nowrap !important;
+  padding: 6px 10px;
+  margin: 3px;
+  font-size: 9px !important;
+}
+```
+❌ Nunca omitir `white-space: nowrap` en los pills de categorías
+❌ En mobile los pills deben fluir en múltiples filas pero NUNCA romper el texto
+
+### Banner promo — mobile
+```css
+.promo-txt { 
+  display: block !important; 
+  width: 100% !important; 
+  padding-right: 0 !important; 
+  padding-bottom: 14px !important; 
+}
+.promo-btn { 
+  display: block !important; 
+  width: 100% !important; 
+  text-align: center !important; 
+}
+.promo-btn a { width: 100% !important; display: block !important; }
+```
+
+### H1 mobile
+- Font-size: 26px en mobile (no más grande)
+- El título no puede superar el ancho de pantalla
+- Verificar que ninguna línea se corte
+
+### H2 CTA
+- Máx 6 palabras por línea también en el H2
+- En mobile no puede tener más de 2 líneas
+
+---
+
+## VERIFICACIÓN MOBILE OBLIGATORIA
+
+Antes de guardar el archivo Claude Code debe verificar mentalmente:
+
+- [ ] Pills de categorías: ¿tienen `white-space: nowrap`?
+- [ ] Banner promo: ¿el botón APROVECHAR se apila correctamente en mobile?
+- [ ] H1: ¿26px en mobile? ¿Ninguna línea cortada?
+- [ ] Productos: ¿imagen al costado (no apilada)?
+- [ ] Contacto: ¿columnas apiladas correctamente?
+- [ ] Íconos: ¿usando las URLs de mcusercontent definidas?
