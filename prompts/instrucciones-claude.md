@@ -160,3 +160,28 @@ EYEBROW          : ej: "Selección Mayo 2026 · Malbecs de Mendoza"
 ### Operativo
 - [ ] Enviar prueba a dayanmartin@gmail.com antes del envío final
 - [ ] Programar a las 10:30 AM hora Argentina (GMT-3)
+
+---
+
+## TEMPLATE BASE — OBLIGATORIO
+
+**Siempre partir de `templates/base-email-vinos.html`** — nunca generar HTML desde cero.
+
+### Flujo de generación:
+1. Leer `templates/base-email-vinos.html` completo
+2. Copiar toda la estructura, CSS y media queries exactamente
+3. Reemplazar SOLO estas partes:
+   - `<title>` — nombre del email
+   - Eyebrow del hero — categoría y mes
+   - H1 del hero — título nuevo siguiendo reglas de copy
+   - Bajada del hero — descripción de la selección
+   - Los 6 bloques de producto — datos completos de cada vino
+   - Link del carrito — en promo banner + botón pack
+   - Total 6x5 — valor real leído del carrito
+   - Sección accesorio — producto afín
+4. NO tocar: header, footer, categorías, contacto, CSS, media queries
+
+❌ Nunca reescribir el CSS
+❌ Nunca cambiar clases mobile
+❌ Nunca modificar la estructura de tablas
+❌ Nunca "mejorar" secciones que no son de contenido
