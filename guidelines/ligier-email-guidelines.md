@@ -485,3 +485,132 @@ Antes de guardar el archivo Claude Code debe verificar mentalmente:
 - [ ] Productos: ¿imagen al costado (no apilada)?
 - [ ] Contacto: ¿columnas apiladas correctamente?
 - [ ] Íconos: ¿usando las URLs de mcusercontent definidas?
+
+
+---
+
+## PARTE 5 — REGLAS POR TIPO DE EMAIL (ACTUALIZACIÓN)
+
+### 5.1 Cantidad de productos — regla general
+
+La cantidad de productos NO es fija en 6. Depende del tipo de email y la campaña:
+
+| Tipo | Cantidad | Promo 6x5 | Botón pack |
+|------|----------|-----------|------------|
+| Vinos | 1–10 | ✅ Si aplica | ✅ Si hay 6+ |
+| Whisky | 1–10 | ✅ Si aplica | ✅ Si hay 6+ |
+| Espirituosas | 1–10 | ✅ Si aplica | ✅ Si hay 6+ |
+| Vinos Guardados | 1–10 | ❌ Nunca | ❌ Nunca |
+| Regalos | 1 | ❌ Nunca | ❌ Nunca |
+| Wine Club | 0 | ❌ Nunca | ❌ Nunca |
+| Experiencias | 0 | ❌ Nunca | ❌ Nunca |
+
+---
+
+### 5.2 Vinos Guardados
+
+**URL:** https://vinotecaligier.com/vinos-guardados
+
+**Posicionamiento:** El segmento más selectivo y de mayor valor de Ligier. Vinos únicos que el tiempo construyó y que probablemente nadie más tiene — ni sus propios creadores.
+
+**Layout:** Igual al base de vinos con estas diferencias:
+- **Hero:** imagen de la cava como fondo o banner, no fondo negro sólido
+- **Sin sección Promo 6x5** — eliminar completamente
+- **Sin botón pack** — cada botella es una decisión individual
+- **Descripciones más largas** — año de cosecha, bodega, historia, por qué este vino es irrepetible
+
+**Reglas del H1:**
+- Habla del tiempo, la rareza o la irreversibilidad
+- Máx 2 líneas × 5 palabras
+- Afirmación — nunca pregunta
+- Sin verbos de acción ("elegimos", "traemos")
+- Sin precio, sin promo, sin urgencia
+
+**Títulos aprobados (rotan por campaña):**
+- "Algunos vinos no vuelven."
+- "El tiempo hizo el trabajo."
+- "Una cava. Décadas. Esta selección."
+- "Lo que el tiempo construyó."
+- "Botellas que ya no se repiten."
+- "Vinos de otra época."
+
+**Títulos prohibidos:**
+- ❌ Cualquier título con "elegimos", "traemos", "seleccionamos"
+- ❌ Cualquier título con precio o promo
+- ❌ Cualquier título con exclamación
+- ❌ Cualquier superlativo ("los mejores", "increíbles", "únicos")
+
+**Tono de las descripciones:**
+- Mencionar año de cosecha y bodega
+- Describir por qué este vino es irrepetible
+- Hablar del proceso de guarda y qué lo hace especial
+- Tono de sommelier experto — técnico pero apasionado
+- Máx 3 líneas (más largo que en vinos estándar)
+
+---
+
+### 5.3 Whisky
+
+**URL:** https://vinotecaligier.com/whisky
+
+**Layout:** Igual al base de vinos con estas diferencias:
+- Promo 6x5 aplica si hay 6+ productos
+- Accesorio: vasos Glencairn, old fashioned, o set de whisky de /accesorios
+- Eyebrow: "WHISKY · [MES AÑO]"
+- Descripciones: mencionar destilería, región, años de añejamiento, notas de sabor
+
+---
+
+### 5.4 Espirituosas / Bebidas de alta graduación
+
+**URL:** https://vinotecaligier.com/espirituosas
+
+**Layout:** Igual al base con sección adicional de recetas después del accesorio:
+
+**Sección recetas:**
+- Background: #1a1a1a
+- 1 a 3 recetas de cócteles con los productos del email
+- Cada receta: nombre del trago + ingredientes + preparación breve
+- Concepto posible: "Armá tu barra" — selección para armar una barra completa
+
+---
+
+### 5.5 Regalos
+
+**URL:** https://vinotecaligier.com/regalos-2026
+
+**Layout diferente al base:**
+- 1 regalo por email
+- Foto grande del regalo (ancho completo o casi)
+- Nombre y precio destacados
+- Detalle de los productos que componen el regalo
+- Sin promo 6x5, sin botón pack
+- CTA: "Ver el regalo completo" o "Regalá esta selección"
+
+---
+
+### 5.6 Wine Club
+
+**URL:** https://vinotecaligier.com/contenido-wineclub
+
+**Objetivo:** Convertir suscriptores
+
+**Layout:** Sin productos estándar — estructura propia:
+- Hero: concepto del club, exclusividad, pertenencia
+- Sección de beneficios del club
+- CTA fuerte hacia la suscripción
+- Tono: club selecto, comunidad de conocedores, acceso preferencial
+
+---
+
+### 5.7 Experiencias
+
+**URL:** https://vinotecaligier.com/contenido-experiencias
+
+**Tipo:** Cenas, eventos, experiencias únicas
+
+**Layout:** Sin productos estándar — estructura propia:
+- Hero: imagen de la experiencia, atmósfera
+- Descripción de la experiencia (fecha, lugar, qué incluye)
+- CTA hacia reserva o consulta
+- Tono: experiencia única, irrepetible, curada por Ligier
