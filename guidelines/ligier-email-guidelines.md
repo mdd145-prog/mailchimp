@@ -316,7 +316,7 @@ border-top: 1px solid #f0f0f0
 | Tipo | URL | Promo 6×5 |
 |------|-----|-----------|
 | Vinos | /vino | ✅ SÍ |
-| Whisky | /whisky | ✅ SÍ |
+| Whisky | /whisky | ❌ NO |
 | Espirituosas | /espirituosas | ✅ SÍ |
 | Vinos Guardados | /vinos-guardados | ❌ NO |
 | Wine Club | /contenido-wineclub | ❌ NO |
@@ -540,6 +540,11 @@ La cantidad de productos NO es fija en 6. Depende del tipo de email y la campañ
 - ❌ Cualquier título con exclamación
 - ❌ Cualquier superlativo ("los mejores", "increíbles", "únicos")
 
+**Financiación:**
+- 3 cuotas sin interés: Visa, Mastercard y Amex bancarias
+- 6 cuotas sin interés: American Express tarjetas propietarias
+- Mostrar siempre en sección de cuotas antes del CTA central
+
 **Tono de las descripciones:**
 - Mencionar año de cosecha y bodega
 - Describir por qué este vino es irrepetible
@@ -554,7 +559,8 @@ La cantidad de productos NO es fija en 6. Depende del tipo de email y la campañ
 **URL:** https://vinotecaligier.com/whisky
 
 **Layout:** Igual al base de vinos con estas diferencias:
-- Promo 6x5 aplica si hay 6+ productos
+- ❌ Sin promo 6x5 — no aplica en whisky
+- ❌ Sin botón pack
 - Accesorio: vasos Glencairn, old fashioned, o set de whisky de /accesorios
 - Eyebrow: "WHISKY · [MES AÑO]"
 - Descripciones: mencionar destilería, región, años de añejamiento, notas de sabor
@@ -608,6 +614,10 @@ La cantidad de productos NO es fija en 6. Depende del tipo de email y la campañ
 **URL:** https://vinotecaligier.com/contenido-experiencias
 
 **Tipo:** Cenas, eventos, experiencias únicas
+
+**Financiación:**
+- 3 cuotas sin interés: Visa, Mastercard y Amex bancarias
+- 6 cuotas sin interés: American Express tarjetas propietarias
 
 **Layout:** Sin productos estándar — estructura propia:
 - Hero: imagen de la experiencia, atmósfera
