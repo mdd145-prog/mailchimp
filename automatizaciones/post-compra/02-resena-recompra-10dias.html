@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light only">
+<meta name="supported-color-schemes" content="light only">
+<title>¿Te gustó alguno en particular? — Ligier</title>
+<style type="text/css">
+  :root { color-scheme: light only; supported-color-schemes: light only; }
+  body, table, td { margin:0; padding:0; border:0; font-family:Arial,sans-serif; }
+  body { background-color:#f4f1ec; }
+  a { text-decoration:none; color:inherit; }
+  img { display:block; height:auto; border:0; }
+  @media only screen and (max-width:480px) {
+    .wrap { width:100% !important; }
+    .pad  { padding:28px 20px !important; }
+    .hero-h1 { font-size:24px !important; }
+    .prod-img-col { width:90px !important; padding-right:12px !important; }
+    .prod-img-col img { width:80px !important; }
+    .btn  { display:block !important; width:100% !important; text-align:center !important; }
+  }
+</style>
+</head>
+<body style="background-color:#f4f1ec; margin:0; padding:24px 0; font-family:Arial,sans-serif;">
+
+<!-- ── PREHEADER ── -->
+<div class="preheader" style="display:none; max-height:0; overflow:hidden; mso-hide:all; font-size:1px; line-height:1px; color:#f4f1ec; opacity:0;">
+  Si querés repetir, te dejamos el acceso directo.
+  &#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;
+</div>
+
+<table class="wrap" align="center" width="600" cellpadding="0" cellspacing="0" style="width:600px; max-width:600px; margin:0 auto;">
+
+  <!-- HEADER -->
+  <tr>
+    <td class="pad" style="background:#ffffff; padding:24px 40px; border-bottom:1px solid #f0f0f0; text-align:center;">
+      <a href="https://vinotecaligier.com" target="_blank">
+        <img src="https://mcusercontent.com/9e298a0f4024c9f23fd6646af/images/3dc5a20a-d835-346a-d331-56796a1934b6.png" alt="Ligier" width="140" style="width:140px; height:auto; margin:0 auto;">
+      </a>
+    </td>
+  </tr>
+
+  <!-- HERO -->
+  <tr>
+    <td class="pad" style="background:#1a1a1a; padding:44px 40px 36px;">
+      <p style="font-size:10px; font-weight:700; letter-spacing:3px; color:#666; text-transform:uppercase; margin:0 0 16px 0;">LO QUE TE LLEVASTE</p>
+      <h1 class="hero-h1" style="font-size:30px; font-weight:700; letter-spacing:-1px; color:#ffffff; margin:0 0 14px 0; line-height:1.15;">¿Te gustó alguno<br>en particular?</h1>
+      <p style="font-size:15px; color:#aaa; line-height:1.6; margin:0;">Si alguno te dejó algo para contar, ayuda a otros a elegir. Y si querés repetir, te dejamos el acceso directo.</p>
+    </td>
+  </tr>
+
+  <!-- PRODUCTOS COMPRADOS con "Volver a pedir" (dinámico) -->
+  <!-- ORDER_PRODUCTS_START -->
+  <tr>
+    <td style="background:#ffffff; padding:32px 40px 8px;">
+
+      <!-- Producto comprado (repetir por cada ítem de la orden) -->
+      <table width="100%" cellpadding="0" cellspacing="0">
+        <tr>
+          <td class="prod-img-col" width="120" valign="middle" style="width:120px; padding-right:20px; padding-bottom:24px;">
+            <a href="{{PRODUCT_URL}}" target="_blank"><img src="{{PRODUCT_IMG}}" alt="{{PRODUCT_NAME}}" width="110" style="width:110px;"></a>
+          </td>
+          <td valign="middle" style="padding-bottom:24px;">
+            <p style="font-size:9px; font-weight:700; letter-spacing:2px; color:#aaa; text-transform:uppercase; margin:0 0 5px 0;">{{PRODUCT_LABEL}}</p>
+            <p style="font-size:14px; font-weight:700; color:#111; margin:0 0 8px 0;"><a href="{{PRODUCT_URL}}" target="_blank" style="color:#111;">{{PRODUCT_NAME}}</a></p>
+            <a href="{{REORDER_URL}}" target="_blank" style="display:inline-block; background:transparent; border:1.5px solid #111111; color:#111111; font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; padding:9px 18px;">VOLVER A PEDIR</a>
+          </td>
+        </tr>
+      </table>
+
+    </td>
+  </tr>
+  <!-- ORDER_PRODUCTS_END -->
+
+  <!-- CTA RESEÑA -->
+  <tr>
+    <td style="background:#ffffff; padding:16px 40px 40px; text-align:center;">
+      <a class="btn" href="{{REVIEW_URL}}" target="_blank" style="display:inline-block; background:#111111; color:#ffffff; font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:15px 40px;">DEJAR MI RESEÑA</a>
+      <p style="margin:16px 0 0 0; font-size:12px; color:#aaa;">Tu impresión ayuda a otros a elegir mejor.</p>
+    </td>
+  </tr>
+
+  <!-- FOOTER -->
+  <tr>
+    <td style="background:#ffffff; padding:24px 40px; text-align:center; border-top:1px solid #f0f0f0;">
+      <p style="font-size:12px; color:#888; margin:0 0 6px 0;">Tu vinoteca online de confianza</p>
+      <p style="font-size:11px; color:#aaa; margin:0 0 8px 0;">WhatsApp +54 9 11 7054-6060 · ventas@ligier.com.ar</p>
+      <a href="*|UNSUB|*" style="font-size:11px; color:#bbb; text-decoration:underline;">Desuscribirme</a>
+    </td>
+  </tr>
+
+</table>
+
+<!-- ─────────────────────────────────────────────────────────────────────
+  ENVÍO CONDICIONADO (Customer Journey):
+    Solo a promotores/pasivos (NPS ≥ 7) que NO dejaron reseña tras el email 1.
+    {{REORDER_URL}} = link de carrito compartido reconstruido con los SKUs de la orden.
+    {{REVIEW_URL}}  = página de reseña del producto en Magento.
+───────────────────────────────────────────────────────────────────── -->
+</body>
+</html>
