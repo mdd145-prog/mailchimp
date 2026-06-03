@@ -1,6 +1,7 @@
 # Mailchimp Automation — Ligier
 
 Repositorio de automatización de emails para [Vinoteca Ligier](https://vinotecaligier.com).
+La app que genera y programa las campañas vive en [`ligier-app`](https://github.com/mdd145-prog/ligier-app) y consume estas plantillas vía GitHub raw.
 
 ---
 
@@ -9,11 +10,22 @@ Repositorio de automatización de emails para [Vinoteca Ligier](https://vinoteca
 ```
 mailchimp/
 ├── guidelines/
-│   └── ligier-email-guidelines.md   # Documento maestro de diseño, copy y reglas operativas
-├── templates/
-│   └── vinos-v1.html                # Template base para emails de vinos (con 6x5)
+│   └── ligier-email-guidelines.md      # Documento maestro de diseño, copy y reglas (v3.1)
+├── templates/                          # Plantillas VIVAS (las que usa la app)
+│   ├── base-email-vinos.html           # Vinos con 6×5 · base de wine-club/experiencias/gift-cards
+│   ├── base-email-whisky.html          # Whisky y espirituosas
+│   └── base-email-guardados.html       # Vinos Guardados + Wine Club
+├── automatizaciones/                   # Flujos de Customer Journeys (Mailchimp)
+│   ├── carrito-abandonado/             # 3 toques: 1h · 24h · 72h
+│   ├── post-compra/                    # NPS + reseña + recompra
+│   └── guia-automatizaciones-mailchimp.md
+├── estrategia/
+│   ├── estrategia-email-marketing.md   # Subjects/preheaders, lifecycle, calendario, KPIs
+│   └── auditoria-diseno-plantillas.md  # Auditoría técnica de HTML email + backlog
+├── archive/                            # Plantillas legacy (no usar)
 ├── prompts/
-│   └── instrucciones-claude.md      # Prompt para Claude — generación automática de emails
+│   ├── instrucciones-claude.md
+│   └── prompt-generar-email.md
 └── README.md
 ```
 
@@ -22,15 +34,33 @@ mailchimp/
 ## Documento maestro
 
 Antes de generar o modificar cualquier email, leer:
-**`guidelines/ligier-email-guidelines.md`**
+**`guidelines/ligier-email-guidelines.md`** (v3.1)
 
-Contiene:
-- Sistema de diseño completo (colores, tipografía, botones, secciones)
-- Reglas de responsividad y calidad
-- Voz y copywriting de la marca
-- Tipos de email y sus particularidades
-- Reglas operativas (prueba, reply-to, horario de envío)
-- Checklist de validación
+Contiene el sistema de diseño, reglas de responsividad/calidad, voz y copy, tipos de email, técnico obligatorio (preheader, dark mode) y los marcadores de inyección que la app necesita.
+
+---
+
+## Plantillas vivas
+
+| Archivo | Tipo | Estado |
+|---------|------|--------|
+| `templates/base-email-vinos.html` | Vinos (promo 6×5) | ✅ Listo |
+| `templates/base-email-whisky.html` | Whisky · Espirituosas | ✅ Listo |
+| `templates/base-email-guardados.html` | Vinos Guardados · Wine Club | ✅ Listo |
+
+> Las plantillas `vinos-v1.html` y `vinos-miercoles-28mayo.html` están en `archive/` — son legacy y no deben usarse (violan reglas duras o son snapshots, no bases).
+
+---
+
+## Automatizaciones (Customer Journeys)
+
+| Flujo | Carpeta | Estado |
+|-------|---------|--------|
+| Carrito abandonado (1h · 24h · 72h) | `automatizaciones/carrito-abandonado/` | ✅ Plantillas listas |
+| Encuesta post-compra (NPS + reseña + recompra) | `automatizaciones/post-compra/` | ✅ Plantillas listas |
+| Bienvenida · Win-back | `automatizaciones/guia-automatizaciones-mailchimp.md` | 🔜 A montar |
+
+Cómo ponerlas en producción: **`automatizaciones/guia-automatizaciones-mailchimp.md`**.
 
 ---
 
@@ -41,19 +71,22 @@ Contiene:
 | Correo de prueba | dayanmartin@gmail.com |
 | Reply-to | ventas@ligier.com.ar |
 | Hora de envío | 10:30 AM (GMT-3, Argentina) |
-| Productos por email | 6 vinos + 1 accesorio |
-| Logo | 140px |
+| Logo | 140px (solo header) |
 
 ---
 
-## Templates disponibles
+## Cambios recientes (v3.1 — junio 2026)
 
-| Archivo | Tipo | Estado |
-|---------|------|--------|
-| `templates/vinos-v1.html` | Vinos con promo 6×5 | ✅ Listo |
-| `templates/whisky.html` | Whisky | 🔜 Próximamente |
-| `templates/espirituosas.html` | Espirituosas | 🔜 Próximamente |
-| `templates/wine-club.html` | Wine Club | 🔜 Próximamente |
-| `templates/experiencias.html` | Experiencias | 🔜 Próximamente |
-| `templates/vinos-guardados.html` | Vinos Guardados | 🔜 Próximamente |
-| `templates/gift-cards.html` | Gift Cards | 🔜 Próximamente |
+Auditoría supervisada por un especialista en email marketing y uno en diseño de HTML email. Resumen en `estrategia/`.
+
+**Fixes críticos de integración con la app** (la inyección de contenido fallaba en silencio):
+- Vinos: agregado `class="pack-total"` → ahora se inyecta el total real del 6×5.
+- Whisky/Espirituosas: agregado `class="hero-bajada"` y marcadores `ACC_START/ACC_END` → la bajada y el accesorio ahora se inyectan; quitada la promo 6×5 del fallback (no corresponde fuera de vinos).
+- Guardados: marcadores de accesorio + resuelta la colisión del eyebrow `#666` que pisaba el bloque "EXCLUSIVO LIGIER" del Wine Club.
+
+**Mejoras de deliverability/diseño en las 3 plantillas vivas:**
+- Preheader oculto (texto de preview) en todas.
+- Meta de dark mode (`color-scheme: light only`).
+- `white-space:nowrap` en los pills de categorías (no se rompen en mobile).
+
+Todos los fixes verificados con los regex reales de `ligier-app/api/generate-campaign.js`.

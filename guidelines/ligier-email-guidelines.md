@@ -1,6 +1,12 @@
 # Ligier — Guía de Emails
-> Versión 3.0 — Documento único y coherente. Reemplaza todas las versiones anteriores.
+> Versión 3.1 — Documento único y coherente. Reemplaza todas las versiones anteriores.
 > Cada regla es obligatoria. Lo que no está permitido, está prohibido.
+
+> **Novedades v3.1 (junio 2026):**
+> - Toda plantilla lleva **preheader oculto** (texto de preview en la bandeja) y **meta de dark mode** (`color-scheme: light only`). Ver "TÉCNICO OBLIGATORIO".
+> - **Plantillas vivas:** `base-email-vinos.html`, `base-email-whisky.html` (whisky + espirituosas), `base-email-guardados.html`. Las legacy `vinos-v1.html` y `vinos-miercoles-28mayo.html` se movieron a `archive/` (no usar).
+> - **Estrategia y automatizaciones:** ver `estrategia/` (estrategia de email marketing + auditoría de diseño) y `automatizaciones/` (carrito abandonado, post-compra, guía de Customer Journeys).
+> - **Marcadores de inyección** que la app (`ligier-app`) necesita y que NO se deben tocar: `class="hero-bajada"`, `class="pack-total"` (solo vinos), `<!-- ACC_START -->`/`<!-- ACC_END -->`, `<!-- Producto 1 -->`, eyebrow con `color:#666` (oscuro) o `rgba(255,255,255,0.5)` (sobre imagen). El eyebrow `#666` debe ser el primero del documento.
 
 ---
 
@@ -289,6 +295,36 @@ Banner Wine Club: `https://vinotecaligier.com/media/wysiwyg/detalle_vg_wineclub.
 - Contacto: columnas apiladas
 - Pills: `white-space: nowrap`, fluyen en varias filas
 - Banner promo: botón APROVECHAR se apila debajo del texto a full ancho
+
+---
+
+## TÉCNICO OBLIGATORIO (v3.1)
+
+### Preheader (texto de preview en la bandeja)
+Justo después de `<body>`, antes de la tabla `.wrap`:
+```html
+<div class="preheader" style="display:none; max-height:0; overflow:hidden; mso-hide:all; font-size:1px; line-height:1px; color:#f4f1ec; opacity:0;">
+  [texto de preview — complementa el subject, no lo repite]
+  &#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;
+</div>
+```
+Los caracteres de relleno evitan que Gmail arrastre texto del cuerpo al preview.
+
+### Dark mode
+En `<head>`:
+```html
+<meta name="color-scheme" content="light only">
+<meta name="supported-color-schemes" content="light only">
+```
+y en `<style>`: `:root { color-scheme: light only; supported-color-schemes: light only; }`
+Pendiente de assets: servir logo e íconos sobre fondo blanco sólido (no transparente) para blindar Apple Mail/Gmail dark.
+
+### Backlog v3.1 (mejora incremental, no bloqueante — ver `estrategia/auditoria-diseno-plantillas.md`)
+- Botones bulletproof: padding en `<td bgcolor>`, no en `<a>` (Outlook ignora padding en links).
+- Scaffolding MSO: `xmlns:v/o`, `<o:OfficeDocumentSettings>`, `mso-line-height-rule:exactly`.
+- VML para el fondo del hero de Guardados.
+- `role="presentation"` en todas las tablas de layout.
+- Tap targets de pills ≥ 44px en mobile.
 
 ---
 
