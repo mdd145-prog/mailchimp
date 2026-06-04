@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ligier Experience N°8 — La Rural · 20 de agosto 2026</title>
+<meta name="description" content="Seis horas, una copa, treinta bodegas. La Rural, Salón Central. Jueves 20 de agosto de 2026, 18:30 a 23:30.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..600&display=swap" rel="stylesheet">
+<style>
+  /*
+    LIGIER EXPERIENCE N°8 — LANDING
+    Base: identidad Ligier (guidelines v3.1)
+      · Paleta exacta de la marca — sin gradientes, sin sombras, sin border-radius
+      · Eyebrows, botones y separadores con el mismo lenguaje de los emails
+      · Voz curador: sin superlativos, sin exclamaciones
+    Propuesta de evolución (para replanteo del guideline):
+      · Serif editorial (Fraunces) SOLO en titulares de display
+      · Motion sobrio: reveals al scroll, marquee informativo, countdown
+  */
+  :root {
+    --negro:   #1a1a1a;   /* Negro fondo */
+    --tinta:   #111;      /* Negro texto/botón */
+    --blanco:  #ffffff;
+    --crema:   #f4f1ec;
+    --gris:    #888;      /* texto secundario */
+    --griscl:  #aaa;      /* labels */
+    --borde:   #f0f0f0;   /* separadores sobre claro */
+    --datos:   #555;
+    --eyebrow: #666;      /* eyebrow sobre oscuro */
+    --borde-osc: #333;    /* línea sobre oscuro (pills) */
+    --ease: cubic-bezier(.22,1,.36,1);
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body {
+    background:var(--negro); color:var(--blanco);
+    font-family:Arial, sans-serif; line-height:1.6;
+    -webkit-font-smoothing:antialiased; overflow-x:hidden;
+  }
+  ::selection { background:var(--tinta); color:var(--crema); }
+  .serif { font-family:'Fraunces', Georgia, serif; }
+
+  /* ── lenguaje compartido con los emails ── */
+  .eyebrow {
+    font-size:10px; font-weight:700; letter-spacing:3px; text-transform:uppercase;
+    color:var(--eyebrow); margin-bottom:24px;
+  }
+  .eyebrow.claro { color:var(--gris); }
+  .btn {
+    display:inline-block; text-decoration:none;
+    font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase;
+    padding:15px 32px; transition:background .4s var(--ease), color .4s var(--ease);
+  }
+  .btn-blanco { background:var(--blanco); color:var(--tinta); border:1px solid var(--blanco); }
+  .btn-blanco:hover { background:transparent; color:var(--blanco); }
+  .btn-negro { background:var(--tinta); color:var(--blanco); border:1px solid var(--tinta); }
+  .btn-negro:hover { background:transparent; color:var(--tinta); }
+
+  /* ── header blanco, como el de los emails ── */
+  .hdr {
+    background:var(--blanco); border-bottom:1px solid var(--borde);
+    padding:22px 40px; text-align:center;
+  }
+  .hdr img { width:140px; height:auto; display:inline-block; }
+
+  /* ── hero ── */
+  .hero {
+    background:var(--negro);
+    min-height:88svh; display:flex; flex-direction:column; justify-content:center;
+    padding:clamp(70px,10vh,120px) clamp(20px,5vw,64px);
+    position:relative;
+  }
+  .hero h1 {
+    font-family:'Fraunces', Georgia, serif; font-weight:340;
+    font-size:clamp(52px,11vw,150px); line-height:.98; letter-spacing:-.02em;
+    color:var(--blanco); max-width:14ch;
+  }
+  .hero h1 .line { display:block; overflow:hidden; }
+  .hero h1 .line > span { display:inline-block; transform:translateY(110%); animation:rise 1s var(--ease) forwards; }
+  .hero h1 .line:nth-child(2) > span { animation-delay:.12s; }
+  .hero h1 .line:nth-child(2) { padding-left:clamp(30px,7vw,120px); }
+  .hero h1 em { font-style:italic; font-weight:300; }
+  .hero h1 .n8 { color:var(--griscl); }
+  @keyframes rise { to { transform:translateY(0); } }
+
+  .hero-sub {
+    margin-top:clamp(30px,5vh,52px);
+    display:flex; flex-wrap:wrap; align-items:flex-end; gap:28px 70px;
+    animation:fadeUp .9s .45s var(--ease) both;
+  }
+  @keyframes fadeUp { from{opacity:0; transform:translateY(20px);} to{opacity:1; transform:none;} }
+  .hero-sub .bajada { font-size:15px; color:var(--griscl); line-height:1.6; max-width:34ch; }
+  .hero-meta { font-size:12px; letter-spacing:1px; line-height:2; color:var(--gris); text-transform:uppercase; }
+  .hero-meta b { color:var(--blanco); font-weight:700; }
+  .hero-cta { margin-top:clamp(28px,5vh,48px); display:flex; align-items:center; gap:24px; flex-wrap:wrap; animation:fadeUp .9s .65s var(--ease) both; }
+  .hero-cta .nota { font-size:12px; color:var(--gris); }
+
+  /* ── marquee informativo ── */
+  .marquee {
+    border-top:1px solid var(--borde-osc); border-bottom:1px solid var(--borde-osc);
+    overflow:hidden; white-space:nowrap; padding:14px 0; background:var(--negro);
+  }
+  .marquee-track { display:inline-block; animation:scroll 38s linear infinite; }
+  .marquee span {
+    font-size:10px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase;
+    color:#ccc; padding:0 22px;
+  }
+  .marquee i { font-style:normal; color:var(--eyebrow); padding:0 4px; }
+  @keyframes scroll { to { transform:translateX(-50%); } }
+
+  /* ── reveals ── */
+  .rv { opacity:0; transform:translateY(28px); transition:opacity .9s var(--ease), transform .9s var(--ease); }
+  .rv.in { opacity:1; transform:none; }
+  .rv[data-d="1"]{ transition-delay:.1s; } .rv[data-d="2"]{ transition-delay:.2s; }
+  .rv[data-d="3"]{ transition-delay:.3s; }
+
+  section { padding:clamp(70px,11vh,130px) clamp(20px,5vw,64px); }
+
+  /* ── manifiesto (crema) ── */
+  .manifesto { background:var(--crema); color:var(--tinta); }
+  .manifesto .eyebrow { color:var(--gris); }
+  .manifesto .big {
+    font-family:'Fraunces', Georgia, serif; font-weight:340;
+    font-size:clamp(28px,4.4vw,56px); line-height:1.15; letter-spacing:-.015em; max-width:22ch;
+  }
+  .manifesto .big em { font-style:italic; }
+  .manifesto .nota {
+    margin-top:36px; max-width:48ch; font-size:15px; color:var(--gris);
+    padding-left:clamp(0px,16vw,260px);
+  }
+
+  /* ── datos en cifras (crema) ── */
+  .stats { background:var(--crema); color:var(--tinta); padding-top:0; }
+  .stats-grid { display:grid; grid-template-columns:repeat(4,1fr); border-top:1px solid #e3ded4; }
+  .stat { padding:34px 22px 30px; border-right:1px solid #e3ded4; }
+  .stat:last-child { border-right:none; }
+  .stat .num { font-family:'Fraunces', Georgia, serif; font-weight:300; font-size:clamp(40px,5.6vw,76px); line-height:1; color:var(--tinta); }
+  .stat .lbl { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-top:12px; color:var(--gris); }
+  @media (max-width:760px){
+    .stats-grid { grid-template-columns:1fr 1fr; }
+    .stat:nth-child(2){ border-right:none; }
+    .stat:nth-child(1), .stat:nth-child(2){ border-bottom:1px solid #e3ded4; }
+  }
+
+  /* ── qué incluye (blanco) ── */
+  .incluye { background:var(--blanco); color:var(--tinta); }
+  .incluye .eyebrow { color:var(--gris); }
+  h2.titulo {
+    font-family:'Fraunces', Georgia, serif; font-weight:340;
+    font-size:clamp(30px,4.6vw,58px); letter-spacing:-.015em; line-height:1.05;
+    margin-bottom:clamp(36px,6vh,70px);
+  }
+  h2.titulo em { font-style:italic; }
+  .inc-list { border-top:1px solid var(--borde); }
+  .inc-row {
+    display:grid; grid-template-columns:80px 1fr auto; align-items:baseline; gap:22px;
+    padding:26px 6px; border-bottom:1px solid var(--borde);
+    transition:background .4s var(--ease), padding-left .4s var(--ease);
+  }
+  .inc-row:hover { background:var(--crema); padding-left:18px; }
+  .inc-row .idx { font-size:10px; font-weight:700; letter-spacing:2px; color:var(--griscl); }
+  .inc-row .what { font-family:'Fraunces', Georgia, serif; font-weight:340; font-size:clamp(19px,2.4vw,28px); letter-spacing:-.01em; }
+  .inc-row .how { font-size:13px; color:var(--gris); max-width:32ch; text-align:right; }
+  @media (max-width:760px){
+    .inc-row { grid-template-columns:44px 1fr; }
+    .inc-row .how { grid-column:2; text-align:left; margin-top:4px; }
+  }
+
+  /* ── detalles (negro) ── */
+  .detalles { background:var(--negro); color:var(--blanco); }
+  .det-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:1px; background:var(--borde-osc); border:1px solid var(--borde-osc); }
+  .det-cell { background:var(--negro); padding:32px 30px; }
+  .det-cell .k { font-size:9px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:var(--eyebrow); margin-bottom:12px; }
+  .det-cell .v { font-family:'Fraunces', Georgia, serif; font-weight:340; font-size:clamp(19px,2.3vw,28px); line-height:1.25; }
+  .det-cell .v small { display:block; font-family:Arial, sans-serif; font-size:13px; color:var(--gris); margin-top:8px; }
+  @media (max-width:700px){ .det-grid { grid-template-columns:1fr; } }
+
+  .count-wrap { margin-top:clamp(44px,7vh,80px); text-align:center; }
+  .count-wrap .k { font-size:9px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:var(--eyebrow); margin-bottom:20px; }
+  .countdown { display:flex; justify-content:center; gap:clamp(16px,4vw,52px); flex-wrap:wrap; }
+  .cd-unit .n { font-family:'Fraunces', Georgia, serif; font-weight:300; font-size:clamp(40px,6.5vw,84px); line-height:1; font-variant-numeric:tabular-nums; }
+  .cd-unit .u { font-size:9px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:var(--griscl); margin-top:8px; }
+
+  /* ── precio (blanco) ── */
+  .precio { background:var(--blanco); color:var(--tinta); }
+  .precio .eyebrow { color:var(--gris); }
+  .precio-inner { display:grid; grid-template-columns:1.2fr 1fr; gap:clamp(36px,6vw,90px); align-items:end; }
+  .precio .amount { font-family:'Fraunces', Georgia, serif; font-weight:300; font-size:clamp(58px,10vw,130px); line-height:.95; letter-spacing:-.03em; }
+  .precio .amount sup { font-size:.34em; font-weight:340; vertical-align:super; }
+  .precio .per { font-size:10px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; color:var(--griscl); margin-top:16px; }
+  .pay-list { border-top:1px solid var(--borde); }
+  .pay-row { display:flex; justify-content:space-between; gap:18px; padding:16px 4px; border-bottom:1px solid var(--borde); font-size:13px; }
+  .pay-row b { font-weight:700; color:var(--tinta); white-space:nowrap; }
+  .pay-row span { color:var(--gris); text-align:right; }
+  .giftcard { margin-top:26px; padding:20px 22px; border:1px dashed #ccc; display:flex; gap:16px; align-items:baseline; }
+  .giftcard .gc-amt { font-family:'Fraunces', Georgia, serif; font-style:italic; font-size:24px; color:var(--tinta); white-space:nowrap; }
+  .giftcard p { font-size:13px; color:var(--gris); }
+  .precio-cta { margin-top:clamp(36px,6vh,60px); display:flex; align-items:center; gap:24px; flex-wrap:wrap; }
+  .precio .cupo { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--griscl); }
+  @media (max-width:840px){ .precio-inner { grid-template-columns:1fr; align-items:start; } }
+
+  /* ── footer (blanco, como el email) ── */
+  footer { background:var(--blanco); color:var(--tinta); border-top:1px solid var(--borde); padding:clamp(50px,8vh,80px) clamp(20px,5vw,64px) 32px; }
+  .f-grid { display:flex; justify-content:space-between; gap:36px; flex-wrap:wrap; }
+  .f-tag { font-size:12px; color:var(--gris); margin-top:8px; }
+  .f-col { font-size:13px; line-height:2.1; color:var(--datos); }
+  .f-col a { color:var(--tinta); font-weight:700; text-decoration:none; }
+  .f-col a:hover { text-decoration:underline; }
+  .f-col .k { font-size:9px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:var(--griscl); }
+  .f-legal {
+    margin-top:50px; padding-top:20px; border-top:1px solid var(--borde);
+    display:flex; justify-content:space-between; gap:14px; flex-wrap:wrap;
+    font-size:10px; letter-spacing:1.5px; text-transform:uppercase; color:#bbb;
+  }
+
+  /* ── CTA fija en mobile ── */
+  .sticky-cta { position:fixed; left:14px; right:14px; bottom:14px; z-index:95; display:none; }
+  .sticky-cta a { width:100%; text-align:center; }
+  @media (max-width:640px){ .sticky-cta.show { display:block; } }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; }
+    html { scroll-behavior:auto; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── HEADER — mismo lenguaje que el email: blanco, logo 140px, borde inferior ── -->
+<div class="hdr">
+  <a href="https://vinotecaligier.com" target="_blank" rel="noopener">
+    <img src="https://mcusercontent.com/9e298a0f4024c9f23fd6646af/images/3dc5a20a-d835-346a-d331-56796a1934b6.png" alt="Ligier" width="140">
+  </a>
+</div>
+
+<!-- ── HERO ── -->
+<header class="hero">
+  <p class="eyebrow">Experiencias · La Rural · Buenos Aires</p>
+  <h1>
+    <span class="line"><span>Ligier <em>Experience</em></span></span>
+    <span class="line"><span class="n8">N°8</span></span>
+  </h1>
+
+  <div class="hero-sub">
+    <p class="bajada">Seis horas, una copa en la mano y treinta bodegas para recorrer sin apuro.</p>
+    <p class="hero-meta">
+      <b>Jue 20 ago 2026</b> — 18:30 / 23:30<br>
+      Av. Sarmiento 2704, CABA<br>
+      Cóctel · Libre recorrido
+    </p>
+  </div>
+
+  <div class="hero-cta">
+    <a class="btn btn-blanco" href="https://vinotecaligier.com/ligier-experience-8.html" target="_blank" rel="noopener">Reservar lugar</a>
+    <p class="nota">Cupo de 600 personas · Hasta 6 cuotas sin interés</p>
+  </div>
+</header>
+
+<!-- ── MARQUEE ── -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span>20 de agosto 2026 <i>·</i> La Rural, Salón Central <i>·</i> 30 bodegas <i>·</i> degustación sin límite <i>·</i> copa de cristal de regalo <i>·</i> gift card $40.000 <i>·</i></span><span>20 de agosto 2026 <i>·</i> La Rural, Salón Central <i>·</i> 30 bodegas <i>·</i> degustación sin límite <i>·</i> copa de cristal de regalo <i>·</i> gift card $40.000 <i>·</i></span>
+  </div>
+</div>
+
+<!-- ── MANIFIESTO ── -->
+<section class="manifesto">
+  <p class="eyebrow rv">La octava edición</p>
+  <h2 class="big rv" data-d="1">Un año eligiendo etiquetas.<br>Una noche para <em>recorrerlas todas.</em></h2>
+  <p class="nota rv" data-d="2">Las bodegas que Ligier seleccionó durante el año, sus enólogos y sus vinos, reunidos en el Salón Central de La Rural. Formato cóctel, recorrido libre: vos marcás el ritmo.</p>
+</section>
+
+<!-- ── CIFRAS ── -->
+<section class="stats">
+  <div class="stats-grid">
+    <div class="stat rv"><div class="num">6</div><div class="lbl">horas de recorrido</div></div>
+    <div class="stat rv" data-d="1"><div class="num">30</div><div class="lbl">bodegas del país</div></div>
+    <div class="stat rv" data-d="2"><div class="num">600</div><div class="lbl">lugares totales</div></div>
+    <div class="stat rv" data-d="3"><div class="num">1</div><div class="lbl">copa en mano</div></div>
+  </div>
+</section>
+
+<!-- ── QUÉ INCLUYE ── -->
+<section class="incluye">
+  <p class="eyebrow rv">La entrada incluye</p>
+  <h2 class="titulo rv" data-d="1">Todo está <em>servido</em></h2>
+  <div class="inc-list">
+    <div class="inc-row rv"><span class="idx">01</span><span class="what">Copa de cristal de regalo</span><span class="how">Tuya desde la entrada, tuya para siempre.</span></div>
+    <div class="inc-row rv"><span class="idx">02</span><span class="what">Degustación sin límite</span><span class="how">Treinta bodegas sirviendo durante toda la noche.</span></div>
+    <div class="inc-row rv"><span class="idx">03</span><span class="what">Gastronomía en formato cóctel</span><span class="how">Servicio completo, pensado para acompañar el vino.</span></div>
+    <div class="inc-row rv"><span class="idx">04</span><span class="what">Agua y bebidas sin alcohol</span><span class="how">Incluidas durante todo el evento.</span></div>
+    <div class="inc-row rv"><span class="idx">05</span><span class="what">Descuentos en compras de vino</span><span class="how">Precios especiales durante el evento.</span></div>
+    <div class="inc-row rv"><span class="idx">06</span><span class="what">Gift Card Ligier de $40.000</span><span class="how">Para la tienda online o futuros eventos.</span></div>
+  </div>
+</section>
+
+<!-- ── DETALLES ── -->
+<section class="detalles">
+  <p class="eyebrow rv">Coordenadas</p>
+  <h2 class="titulo rv" data-d="1">La noche, <em>en datos</em></h2>
+  <div class="det-grid">
+    <div class="det-cell rv"><div class="k">Fecha</div><div class="v">Jueves 20 de agosto, 2026</div></div>
+    <div class="det-cell rv" data-d="1"><div class="k">Horario</div><div class="v">18:30 — 23:30</div></div>
+    <div class="det-cell rv" data-d="2"><div class="k">Lugar</div><div class="v">La Rural · Salón Central<small>Av. Sarmiento 2704, CABA</small></div></div>
+    <div class="det-cell rv" data-d="3"><div class="k">Formato</div><div class="v">Cóctel · Libre recorrido<small>Sin mesas asignadas, sin horarios fijos.</small></div></div>
+  </div>
+
+  <div class="count-wrap rv" data-d="2">
+    <p class="k">Faltan</p>
+    <div class="countdown">
+      <div class="cd-unit"><div class="n" id="cd-d">—</div><div class="u">días</div></div>
+      <div class="cd-unit"><div class="n" id="cd-h">—</div><div class="u">horas</div></div>
+      <div class="cd-unit"><div class="n" id="cd-m">—</div><div class="u">min</div></div>
+      <div class="cd-unit"><div class="n" id="cd-s">—</div><div class="u">seg</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PRECIO Y RESERVA ── -->
+<section class="precio" id="reserva">
+  <p class="eyebrow rv">Reserva</p>
+  <div class="precio-inner">
+    <div class="rv" data-d="1">
+      <div class="amount"><sup>$</sup>160.000</div>
+      <p class="per">por persona · todo incluido</p>
+    </div>
+    <div class="rv" data-d="2">
+      <div class="pay-list">
+        <div class="pay-row"><b>3 cuotas sin interés</b><span>Visa · Mastercard · Amex bancarias</span></div>
+        <div class="pay-row"><b>6 cuotas sin interés</b><span>American Express propietarias</span></div>
+      </div>
+      <div class="giftcard">
+        <span class="gc-amt">$40.000</span>
+        <p>vuelven con tu entrada en una Gift Card Ligier, para usar en la tienda o en futuros eventos.</p>
+      </div>
+    </div>
+  </div>
+  <div class="precio-cta rv" data-d="3">
+    <a class="btn btn-negro" href="https://vinotecaligier.com/ligier-experience-8.html" target="_blank" rel="noopener">Reservar mi lugar</a>
+    <span class="cupo">Cupo · 600 personas</span>
+  </div>
+</section>
+
+<!-- ── FOOTER — datos de contacto oficiales ── -->
+<footer>
+  <div class="f-grid">
+    <div class="rv">
+      <img src="https://mcusercontent.com/9e298a0f4024c9f23fd6646af/images/3dc5a20a-d835-346a-d331-56796a1934b6.png" alt="Ligier" width="120">
+      <p class="f-tag">Tu vinoteca online de confianza</p>
+    </div>
+    <div class="f-col rv" data-d="1">
+      <span class="k">Contacto</span><br>
+      <a href="https://wa.me/5491170546060" target="_blank" rel="noopener">+54 9 11 7054-6060</a><br>
+      <a href="mailto:ventas@ligier.com.ar">ventas@ligier.com.ar</a><br>
+      <a href="https://www.instagram.com/ligier" target="_blank" rel="noopener">@ligier</a> · <a href="https://www.instagram.com/vinosguardados" target="_blank" rel="noopener">@vinosguardados</a>
+    </div>
+    <div class="f-col rv" data-d="2">
+      <span class="k">Vinoteca</span><br>
+      J. D. Perón 1621, C.A.B.A.<br>
+      Lun–Vie 10:00–18:00 · Sáb 10:00–13:00<br>
+      <a href="https://vinotecaligier.com" target="_blank" rel="noopener">vinotecaligier.com</a>
+    </div>
+  </div>
+  <div class="f-legal">
+    <span>Ligier Experience N°8 — 2026</span>
+    <span>Beber con moderación. Prohibida su venta a menores de 18 años.</span>
+  </div>
+</footer>
+
+<div class="sticky-cta" id="stickyCta">
+  <a class="btn btn-blanco" href="https://vinotecaligier.com/ligier-experience-8.html" target="_blank" rel="noopener">Reservar — $160.000</a>
+</div>
+
+<script>
+  // reveals al scroll
+  const io = new IntersectionObserver(es => es.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+  }), { threshold:.18 });
+  document.querySelectorAll('.rv').forEach(el => io.observe(el));
+
+  // countdown → 20 ago 2026, 18:30 GMT-3
+  const target = new Date('2026-08-20T18:30:00-03:00').getTime();
+  const pad = n => String(n).padStart(2,'0');
+  const $ = id => document.getElementById(id);
+  function tick(){
+    const diff = Math.max(0, target - Date.now());
+    $('cd-d').textContent = pad(Math.floor(diff/864e5));
+    $('cd-h').textContent = pad(Math.floor(diff/36e5)%24);
+    $('cd-m').textContent = pad(Math.floor(diff/6e4)%60);
+    $('cd-s').textContent = pad(Math.floor(diff/1e3)%60);
+  }
+  tick(); setInterval(tick, 1000);
+
+  // CTA fija en mobile al salir del hero
+  const hero = document.querySelector('.hero');
+  new IntersectionObserver(([e]) => {
+    document.getElementById('stickyCta').classList.toggle('show', !e.isIntersecting);
+  }, { threshold:.1 }).observe(hero);
+</script>
+</body>
+</html>
