@@ -107,13 +107,15 @@ Reglas del contrato:
 
 ## C. PLAN DE TRABAJO POR FASES
 
-### Fase 1 — Contrato v4 + bugs (sincroniza ambos repos, base de todo)
-- [ ] Plantillas: migrar anclajes a `INJECT:*` + `hero-eyebrow` por clase (3 vivas)
-- [ ] Guideline: sección "API de inyección" con la tabla del contrato
-- [ ] App: `getCartTotal()` activo, condición `Σqty ≥ 6`, eliminar banner/pack si no califica
-- [ ] App: fix URL raw (`Mailchimp`) + fix timezone explícito
+### Fase 1 — Contrato v4 + bugs ✅ COMPLETADA (junio 2026)
+- [x] Plantillas: anclajes `INJECT:*` + `hero-eyebrow` por clase (3 vivas) — commit `b1ac097`
+- [x] Guideline v4.0: sección "API DE INYECCIÓN" con la tabla del contrato
+- [x] App: `getCartTotal()` activo, condición `Σqty ≥ 6`, banner/pack eliminados si no califica — ligier-app `925df91`, desplegado en Vercel
+- [x] App: fix timezone explícito (Date.UTC GMT-3). Nota: la "deuda URL raw" era falsa alarma — raw.githubusercontent.com es case-insensitive; ambas capitalizaciones funcionan.
 
-### Fase 2 — Tipos completos
+> Estado de transición: las plantillas conservan los anclajes legacy ADEMÁS de los `INJECT:*`, y la app tiene fallback legacy. Cuando la Fase 2 esté hecha y estable, se pueden limpiar ambos lados.
+
+### Fase 2 — Tipos completos ⏭️ PRÓXIMA (retomar en la compu de la oficina)
 - [ ] `base-email-experiencias.html` (base: `campanas/2026-08-ligier-experience-8.html`)
 - [ ] `base-email-wineclub.html` · `base-email-giftcards.html` · `base-email-regalos.html`
 - [ ] App: rama sin productos (experiencias/wine-club/gift-cards) + tipo regalos en wizard

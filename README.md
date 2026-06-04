@@ -10,16 +10,21 @@ La app que genera y programa las campañas vive en [`ligier-app`](https://github
 ```
 mailchimp/
 ├── guidelines/
-│   └── ligier-email-guidelines.md      # Documento maestro de diseño, copy y reglas (v3.1)
+│   └── ligier-email-guidelines.md      # Documento maestro de diseño, copy y reglas (v4.0)
 ├── templates/                          # Plantillas VIVAS (las que usa la app)
-│   ├── base-email-vinos.html           # Vinos con 6×5 · base de wine-club/experiencias/gift-cards
+│   ├── base-email-vinos.html           # Vinos con 6×5 (plantillas propias para otros tipos: Fase 2)
 │   ├── base-email-whisky.html          # Whisky y espirituosas
 │   └── base-email-guardados.html       # Vinos Guardados + Wine Club
+├── campanas/                           # Campañas puntuales armadas a mano
+│   └── 2026-08-ligier-experience-8.html  # Evento Experience #8 (base de la futura plantilla experiencias)
+├── landing/
+│   └── ligier-experience-8.html        # Landing del evento — referencia de identidad web (serif de display)
 ├── automatizaciones/                   # Flujos de Customer Journeys (Mailchimp)
 │   ├── carrito-abandonado/             # 3 toques: 1h · 24h · 72h
 │   ├── post-compra/                    # NPS + reseña + recompra
 │   └── guia-automatizaciones-mailchimp.md
 ├── estrategia/
+│   ├── replanteo-arquitectura-v4.md    # ⭐ Decisiones v4, contrato de inyección y plan de 5 fases
 │   ├── estrategia-email-marketing.md   # Subjects/preheaders, lifecycle, calendario, KPIs
 │   └── auditoria-diseno-plantillas.md  # Auditoría técnica de HTML email + backlog
 ├── archive/                            # Plantillas legacy (no usar)
@@ -34,9 +39,14 @@ mailchimp/
 ## Documento maestro
 
 Antes de generar o modificar cualquier email, leer:
-**`guidelines/ligier-email-guidelines.md`** (v3.1)
+**`guidelines/ligier-email-guidelines.md`** (v4.0)
 
-Contiene el sistema de diseño, reglas de responsividad/calidad, voz y copy, tipos de email, técnico obligatorio (preheader, dark mode) y los marcadores de inyección que la app necesita.
+Contiene el sistema de diseño, reglas de responsividad/calidad, voz y copy, tipos de email, técnico obligatorio (preheader, dark mode) y la **API DE INYECCIÓN** (contrato de marcadores `INJECT:*` con la app).
+
+> **Replanteo v4 — estado:** Fase 1 completada (contrato `INJECT:*` en plantillas + ligier-app
+> desplegada con 6×5 por botellas y total real del carrito). **Próximo paso: Fase 2** — plantillas
+> propias para experiencias / wine-club / gift-cards / regalos + rama sin productos en la app.
+> Decisiones y plan completo: `estrategia/replanteo-arquitectura-v4.md`.
 
 ---
 
