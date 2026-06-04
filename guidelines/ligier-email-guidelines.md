@@ -1,12 +1,18 @@
 # Ligier — Guía de Emails
-> Versión 3.1 — Documento único y coherente. Reemplaza todas las versiones anteriores.
+> Versión 4.0 — Documento único y coherente. Reemplaza todas las versiones anteriores.
 > Cada regla es obligatoria. Lo que no está permitido, está prohibido.
 
-> **Novedades v3.1 (junio 2026):**
-> - Toda plantilla lleva **preheader oculto** (texto de preview en la bandeja) y **meta de dark mode** (`color-scheme: light only`). Ver "TÉCNICO OBLIGATORIO".
-> - **Plantillas vivas:** `base-email-vinos.html`, `base-email-whisky.html` (whisky + espirituosas), `base-email-guardados.html`. Las legacy `vinos-v1.html` y `vinos-miercoles-28mayo.html` se movieron a `archive/` (no usar).
-> - **Estrategia y automatizaciones:** ver `estrategia/` (estrategia de email marketing + auditoría de diseño) y `automatizaciones/` (carrito abandonado, post-compra, guía de Customer Journeys).
-> - **Marcadores de inyección** que la app (`ligier-app`) necesita y que NO se deben tocar: `class="hero-bajada"`, `class="pack-total"` (solo vinos), `<!-- ACC_START -->`/`<!-- ACC_END -->`, `<!-- Producto 1 -->`, eyebrow con `color:#666` (oscuro) o `rgba(255,255,255,0.5)` (sobre imagen). El eyebrow `#666` debe ser el primero del documento.
+> **Novedades v4.0 (junio 2026):**
+> - **Contrato de inyección v4**: los marcadores que usa `ligier-app` son explícitos (`<!-- INJECT:... -->`) y están documentados completos en "API DE INYECCIÓN". Cambiar un marcador exige cambio coordinado en ambos repos, mismo día. Los anclajes legacy (`<!-- Producto 1 -->`, comentarios de sección, eyebrow por color) quedan en las plantillas solo durante la transición.
+> - **Condición 6×5 por botellas**: la promo aplica si la **suma de cantidades del carrito ≥ 6** (no la cantidad de etiquetas del email). Un email con 3 etiquetas × 2 unidades califica. Con menos de 6 botellas, banner promo y bloque pack se eliminan del email.
+> - **Nuevos tipos con plantilla propia** (Fase 2, en construcción): experiencias, wine club, gift cards y regalos. Dejan de reusar la plantilla de vinos.
+> - **Espirituosas**: se elimina la sección de recetas de cóctel; usa la plantilla de whisky tal cual.
+> - **Accesorio**: solo manual (URL pegada por el usuario) o ninguno. Se elimina el modo automático.
+> - **Técnico obligatorio ampliado**: botones bulletproof, scaffolding MSO, VML en hero de Guardados, `role="presentation"`, tap targets ≥ 44px y assets sobre fondo blanco dejan de ser backlog.
+> - **Identidad web**: serif editorial (Fraunces / fallback Georgia) permitida SOLO en piezas web (landings, gráfica de eventos — ver `landing/ligier-experience-8.html`). En email, Arial sigue siendo ley.
+> - **Copy única**: subjects/preheaders/títulos/bajadas migran a `copy-library.json` en este repo (Fase 3); la app la consume vía GitHub raw.
+> - Decisiones completas y plan de fases: `estrategia/replanteo-arquitectura-v4.md`.
+> - Preheader oculto + dark mode (v3.1) siguen vigentes — ver "TÉCNICO OBLIGATORIO". Plantillas vivas: `base-email-vinos.html`, `base-email-whisky.html` (whisky + espirituosas), `base-email-guardados.html`. Legacy en `archive/` (no usar).
 
 ---
 
@@ -22,6 +28,31 @@
 8. Nunca usar logos de Instagram con gradiente de colores
 9. Todo producto incluido debe tener stock e imagen verificados
 10. El diseño debe verse perfecto en desktop Y en mobile
+
+---
+
+## API DE INYECCIÓN — CONTRATO CON LIGIER-APP
+
+Toda plantilla viva DEBE contener estos anclajes. Son la API entre los dos repos.
+
+| Marcador | Inyecta | Obligatorio en |
+|----------|---------|----------------|
+| `<p class="hero-eyebrow">` | eyebrow `TIPO · MES AÑO` | todas |
+| `<h1 class="hero-h1">` | título (saltos → `<br>`) | todas |
+| `<p class="hero-bajada">` | bajada | todas |
+| `<div class="preheader">` | texto de preview | todas |
+| `<!-- INJECT:PRODUCTS_START -->` / `<!-- INJECT:PRODUCTS_END -->` | bloque de productos | vinos, whisky, guardados, regalos |
+| `<!-- INJECT:ACC_START -->` / `<!-- INJECT:ACC_END -->` | accesorio (o se elimina el rango) | tipos con productos |
+| `<!-- INJECT:PROMO_START -->` / `<!-- INJECT:PROMO_END -->` | banner 6×5 (se elimina si Σqty < 6) | solo vinos |
+| `<!-- INJECT:PACK_START -->` / `<!-- INJECT:PACK_END -->` | bloque pack (se elimina si Σqty < 6) | solo vinos |
+| `<p class="pack-total">` | total real del carrito | solo vinos |
+| URL `compartircarrito/...` | link del carrito compartido | solo vinos |
+| `IMAGEN_SILVER/GOLD/PLATINUM/BLACK` | imágenes Magento de membresías | guardados, wine club |
+
+Reglas del contrato:
+1. Cambiar un marcador = cambio coordinado en ambos repos, mismo día.
+2. Toda plantilla nueva se valida contra esta tabla antes de entrar a `templates/`.
+3. La app nunca ancla por comentarios decorativos ni por colores.
 
 ---
 
@@ -87,6 +118,8 @@ Sin border-radius en ninguno.
 
 **El 6x5 aplica EXCLUSIVAMENTE a la categoría Vinos (/vino). Ningún otro tipo lo lleva.**
 
+**Condición de la promo (v4): suma de cantidades del carrito ≥ 6 botellas** — no la cantidad de etiquetas del email. Un email con 3 etiquetas × 2 unidades califica. Si Σqty < 6, el banner promo y el bloque pack se eliminan del email (rangos `INJECT:PROMO` e `INJECT:PACK`).
+
 ---
 
 ## CÓMO SE MUESTRA EL PRECIO
@@ -115,6 +148,8 @@ El bloque del pack muestra el total REAL leído del carrito (donde la botella m�
 
 Libre. La campaña define cuántos productos van (1, 2, 3… hasta 10). No hay número fijo.
 
+En vinos, el 6×5 no depende de la cantidad de etiquetas sino de las **botellas del carrito** (Σqty ≥ 6). Un email de 3 etiquetas puede llevar promo si el carrito suma 6.
+
 ---
 
 ## ESTRUCTURA POR TIPO
@@ -142,10 +177,8 @@ Igual que Vinos PERO:
 - Eyebrow: "WHISKY · [MES AÑO]"
 
 ### ESPIRITUOSAS (/espirituosas)
-Igual que Whisky PERO:
+Igual que Whisky (misma plantilla, sin secciones extra):
 - Precio individual (sin 6x5)
-- Sección extra de recetas de cóctel después del accesorio (fondo #1a1a1a)
-- Concepto "armá tu barra"
 - Accesorio: herramientas de coctelería
 
 ### VINOS GUARDADOS (/vinos-guardados)
@@ -157,20 +190,20 @@ Igual que Whisky PERO:
 - Label de producto: `[CEPA] · [REGIÓN] · [AÑO COSECHA]`
 - Descripciones más largas (hasta 3 líneas)
 
-### REGALOS (/regalos-2026)
+### REGALOS (/regalos-2026) — plantilla propia `base-email-regalos.html` (Fase 2)
 - 1 regalo, foto grande
 - Detalle de los productos que componen el regalo
 - Sin 6x5, sin pack
 - CTA: "Regalá esta selección"
 
-### WINE CLUB (/contenido-wineclub)
+### WINE CLUB (/contenido-wineclub) — plantilla propia `base-email-wineclub.html` (Fase 2)
 - Sin productos
 - Hero del concepto del club
 - 4 membresías (Silver/Gold/Platinum/Black)
 - Financiación
 - CTA fuerte a suscripción
 
-### EXPERIENCIAS (/contenido-experiencias)
+### EXPERIENCIAS (/contenido-experiencias) — plantilla propia `base-email-experiencias.html` (Fase 2, base: `campanas/2026-08-ligier-experience-8.html`)
 - Sin productos
 - Hero de la experiencia
 - Descripción (fecha, lugar, qué incluye)
@@ -279,7 +312,7 @@ Banner Wine Club: `https://vinotecaligier.com/media/wysiwyg/detalle_vg_wineclub.
 
 ## ACCESORIO
 
-- Lo elige el usuario (pega la URL del producto)
+- Lo elige el usuario (pega la URL del producto) **o no hay accesorio** — no existe modo automático (v4)
 - 1 producto, layout imagen izquierda + info derecha
 - Botón 3 (outline): "VER PRODUCTO"
 - Debe ser afín al tipo de email
@@ -319,12 +352,13 @@ En `<head>`:
 y en `<style>`: `:root { color-scheme: light only; supported-color-schemes: light only; }`
 Pendiente de assets: servir logo e íconos sobre fondo blanco sólido (no transparente) para blindar Apple Mail/Gmail dark.
 
-### Backlog v3.1 (mejora incremental, no bloqueante — ver `estrategia/auditoria-diseno-plantillas.md`)
-- Botones bulletproof: padding en `<td bgcolor>`, no en `<a>` (Outlook ignora padding en links).
+### Obligatorio v4.0 (antes backlog — ver `estrategia/auditoria-diseno-plantillas.md`; implementación en Fase 4)
+- Botones bulletproof: padding en `<td bgcolor>`, no en `<a>` (Outlook ignora padding en links). Aplica también a los bloques que genera la app.
 - Scaffolding MSO: `xmlns:v/o`, `<o:OfficeDocumentSettings>`, `mso-line-height-rule:exactly`.
 - VML para el fondo del hero de Guardados.
 - `role="presentation"` en todas las tablas de layout.
 - Tap targets de pills ≥ 44px en mobile.
+- Assets (logo e íconos) sobre fondo blanco sólido para blindar dark mode.
 
 ---
 
